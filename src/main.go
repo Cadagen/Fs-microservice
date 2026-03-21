@@ -5,6 +5,7 @@ import (
 	"cadagen/microservices/fs/src/utils"
 	"encoding/json"
 	"errors"
+	"flag"
 	"fmt"
 	"os"
 )
@@ -15,6 +16,15 @@ func main() {
 	switch operation {
 	case "ls":
 		returnOk(commands.Ls(os.Args[2]))
+	case "read":
+		readCmd := flag.NewFlagSet("read", flag.ExitOnError)
+
+		start := readCmd.Int("start", -1, "Start line")
+		end := readCmd.Int("end", -1, "End line")
+
+		readCmd.Parse(os.Args[2:])
+
+		returnOk(commands.Read(readCmd.Arg(0), *start, *end))
 	default:
 		utils.Throw(errors.New("Invalid command"))
 	}
