@@ -77,6 +77,28 @@ Lists all files in a directory (recursively) matching pattern by name.
 
 **Returns:** `string[]`
 
+### grep
+
+Finds text in all files matching by pattern in a specific directory.
+
+**Arguments:**
+`grep <path> <file_pattern> <search>`
+
+- **path**: Path to the directory where to search
+- **file_pattern**: Glob pattern for file filtering (go filepath.Match syntax)
+- **search**: Text to search for in the files, multiline support
+
+**Returns:**
+
+```json
+[
+  {
+    "path": "/home/user/myfile.go",
+    "offsets": [4, 3]
+  }
+]
+```
+
 ---
 
 ## Technical Integration
@@ -103,4 +125,16 @@ The backend calling this service is responsible for path sanitization. Ensure th
 
 ```bash
 ./cadagen-fs ls ./uploads/user_1
+```
+
+**Glob directory:**
+
+```bash
+./cadagen-fs glob ./logs *.log
+```
+
+**Grep directory:**
+
+```bash
+./cadagen-fs grep ./logs *.log "file error"
 ```

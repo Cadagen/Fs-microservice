@@ -27,6 +27,8 @@ func main() {
 		returnOk(commands.Read(readCmd.Arg(0), *start, *end))
 	case "glob":
 		returnOk(commands.Glob(os.Args[2], os.Args[3]))
+	case "grep":
+		returnOk(commands.Grep(os.Args[2], os.Args[4], os.Args[3]))
 	default:
 		utils.Throw(errors.New("Invalid command"))
 	}
