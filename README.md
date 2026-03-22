@@ -75,7 +75,7 @@ Lists all files in a directory (recursively) matching pattern by name.
 - **path**: Path to the directory where to search
 - **pattern**: Glob pattern (go filepath.Match syntax)
 
-**Returns:** string[]
+**Returns:** `string[]`
 
 ---
 
