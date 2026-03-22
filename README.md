@@ -65,6 +65,18 @@ Lists the contents of a directory.
 ]
 ```
 
+### glob
+
+Lists all files in a directory (recursively) matching pattern by name.
+
+**Arguments:**
+`glob <path> <pattern>`
+
+- **path**: Path to the directory where to search
+- **pattern**: Glob pattern (go filepath.Match syntax)
+
+**Returns:** string[]
+
 ---
 
 ## Technical Integration

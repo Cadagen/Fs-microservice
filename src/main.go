@@ -25,6 +25,8 @@ func main() {
 		readCmd.Parse(os.Args[2:])
 
 		returnOk(commands.Read(readCmd.Arg(0), *start, *end))
+	case "glob":
+		returnOk(commands.Glob(os.Args[2], os.Args[3]))
 	default:
 		utils.Throw(errors.New("Invalid command"))
 	}
