@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 )
 
-func Glob(dirPath string, pattern string) []string {
+func Glob(dirPath string, pattern string, excludedDirs string[]) []string {
 	var matches []string
 
 	filepath.WalkDir(dirPath, func(path string, d fs.DirEntry, err error) error {
@@ -14,10 +14,11 @@ func Glob(dirPath string, pattern string) []string {
 		}
 
 		if d.IsDir() {
-			// TODO: Skip ignored folders by name
-			// if d.Name() == ".git" || d.Name() == "node_modules" {
-			//	 return filepath.SkipDir
-			// }
+			for _, dir := range excludedDirs {
+				if d.Name() == dir {
+					return filepath.SkipDir
+				}
+			}
 
 			return nil
 		}
