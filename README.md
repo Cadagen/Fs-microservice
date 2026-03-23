@@ -70,10 +70,11 @@ Lists the contents of a directory.
 Lists all files in a directory (recursively) matching pattern by name.
 
 **Arguments:**
-`glob <path> <pattern>`
+`glob <path> <pattern> <excluded_dirs>`
 
 - **path**: Path to the directory where to search
 - **pattern**: Glob pattern (go filepath.Match syntax)
+- **excluded_dirs**: Excluded directories, comma separated
 
 **Returns:** `string[]`
 
@@ -82,11 +83,12 @@ Lists all files in a directory (recursively) matching pattern by name.
 Finds text in all files matching by pattern in a specific directory.
 
 **Arguments:**
-`grep <path> <file_pattern> <search>`
+`grep <path> <file_pattern> <search> <excluded_dirs>`
 
 - **path**: Path to the directory where to search
 - **file_pattern**: Glob pattern for file filtering (go filepath.Match syntax)
 - **search**: Text to search for in the files, multiline support
+- **excluded_dirs**: Excluded directories, comma separated
 
 **Returns:**
 
@@ -130,11 +132,11 @@ The backend calling this service is responsible for path sanitization. Ensure th
 **Glob directory:**
 
 ```bash
-./cadagen-fs glob ./logs *.log
+./cadagen-fs glob ./logs *.log backup,old
 ```
 
 **Grep directory:**
 
 ```bash
-./cadagen-fs grep ./logs *.log "file error"
+./cadagen-fs grep ./logs *.log "file error" backup,trash
 ```
