@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 )
 
-func Glob(dirPath string, pattern string, excludedDirs string[]) []string {
+func Glob(dirPath string, pattern string, excludedDirs []string) []string {
 	var matches []string
 
 	filepath.WalkDir(dirPath, func(path string, d fs.DirEntry, err error) error {

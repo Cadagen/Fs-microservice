@@ -12,7 +12,7 @@ type GrepCliResponseItem struct {
 
 type GrepCliResponse []GrepCliResponseItem
 
-func Grep(dirPath string, text string, filePattern string, excludedDirs string[]) utils.CliResponse[GrepCliResponse] {
+func Grep(dirPath string, text string, filePattern string, excludedDirs []string) utils.CliResponse[GrepCliResponse] {
 	files := fsutils.Glob(dirPath, filePattern, excludedDirs)
 
 	output := make(GrepCliResponse, 0)
